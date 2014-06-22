@@ -1,7 +1,7 @@
 local HealComm = AceLibrary("HealComm-1.0")
 local L = AceLibrary("Babble-Spell-2.2")
 LazySpell = AceLibrary("AceAddon-2.0"):new("AceConsole-2.0")
-LazySpell.debugging = true
+LazySpell.debugging = nil
 
 LazySpell.BOL = {
 ["enUS"] = "Receives up to (%d+) extra healing from Holy Light spells%, and up to (%d+) extra healing from Flash of Light spells%.",
