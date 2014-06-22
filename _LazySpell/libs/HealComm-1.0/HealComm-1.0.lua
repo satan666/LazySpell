@@ -1006,16 +1006,25 @@ function HealComm.stopHeal(caster)
 end
 
 function HealComm.startHeal(caster, target, size, casttime)
+	
+	-- DEFAULT_CHAT_FRAME:AddMessage("HealComm.startHeal() : START : unit = "..tostring(target).."")	
+	
 	HealComm.SpecialEventScheduler:ScheduleEvent(caster, HealComm.stopHeal, (casttime/1000), caster)
+	
 	if not HealComm.Heals[target] then
 		HealComm.Heals[target] = {}
 	end
+	
 	if HealComm.Lookup[caster] then
 		HealComm.Heals[HealComm.Lookup[caster]][caster] = nil
 		HealComm.Lookup[caster] = nil
 	end
+	
 	HealComm.Heals[target][caster] = {amount = size, ctime = (casttime/1000)+GetTime()}
 	HealComm.Lookup[caster] = target
+	
+	-- DEFAULT_CHAT_FRAME:AddMessage("HealComm.startHeal() : END : unit = "..tostring(target).."")
+	
 	HealComm.SpecialEventScheduler:TriggerEvent("HealComm_Healupdate", target)
 end
 
@@ -1085,17 +1094,25 @@ function HealComm.SendAddonMessage(msg)
 end
 
 HealComm.OnEvent = function()
+
 	if ( event == "SPELLCAST_START" ) then
+	
+		-- DEFAULT_CHAT_FRAME:AddMessage("HealComm.OnEvent() : event = "..tostring(event).."")	
+	
 		if ( healcomm_SpellCast and healcomm_SpellCast[1] == arg1 and HealComm.Spells[arg1] ) then
 			local Bonus = 0
+			
 			if BonusScanner then
 				Bonus = tonumber(BonusScanner:GetBonus("HEAL"))
 			end
+			
 			local buffpower, buffmod = GetBuffSpellPower()
 			local targetpower, targetmod = healcomm_SpellCast[4], healcomm_SpellCast[5]
 			local Bonus = Bonus + buffpower
+			
 			healcomm_spellIsCasting = arg1
 			local amount = ((math.floor(HealComm.Spells[healcomm_SpellCast[1]][tonumber(healcomm_SpellCast[2])](Bonus))+targetpower)*buffmod*targetmod)
+			
 			if arg1 == L["Prayer of Healing"] then
 				local targets = {UnitName("player")}
 				local targetsstring = UnitName("player").."/"
@@ -1111,11 +1128,15 @@ HealComm.OnEvent = function()
 				HealComm.SendAddonMessage("Heal/"..healcomm_SpellCast[3].."/"..amount.."/"..arg2.."/")
 				HealComm.startHeal(UnitName("player"), healcomm_SpellCast[3], amount, arg2)
 			end
+			
 		elseif ( healcomm_SpellCast and healcomm_SpellCast[1] == arg1 and HealComm.Resurrections[arg1] ) then
 			HealComm.SendAddonMessage("Resurrection/"..healcomm_SpellCast[3].."/start/")
 			healcomm_spellIsCasting = arg1
 			HealComm.startResurrection(UnitName("player"), healcomm_SpellCast[3])
+--		else
+--			DEFAULT_CHAT_FRAME:AddMessage("HealComm.OnEvent() : event = "..tostring(event).." Uncaught case.")			
 		end
+		
 	elseif (event == "SPELLCAST_INTERRUPTED" or event == "SPELLCAST_FAILED") and HealComm.Spells[healcomm_spellIsCasting] then
 		if healcomm_spellIsCasting == L["Prayer of Healing"] then
 			HealComm.SendAddonMessage("GrpHealstop")
@@ -1222,7 +1243,11 @@ CastSpell = healcomm_newCastSpell
 healcomm_oldCastSpellByName = CastSpellByName
 function healcomm_newCastSpellByName(spellName, onSelf)
 	-- Call the original function
+	
+	-- DEFAULT_CHAT_FRAME:AddMessage("healcomm_newCastSpellByName() : spellName = "..tostring(spellName).." onSelf = "..tostring(onSelf).."")
+	
 	healcomm_oldCastSpellByName(spellName, onSelf)
+	
 	local _,_,rank = string.find(spellName,"(%d+)")
 	local _, _, spellName = string.find(spellName, "^([^%(]+)")
 	if not rank then
@@ -1238,17 +1263,24 @@ function healcomm_newCastSpellByName(spellName, onSelf)
 			_,_,rank = string.find(rank,"(%d+)")
 		end
 	end
+	
 	if ( spellName ) then
 		if ( SpellIsTargeting() ) then
 			healcomm_SpellSpell = spellName
+			healcomm_RankRank = rank
 		else
-			if UnitIsVisible("target") and UnitIsConnected("target") and UnitReaction("target", "player") > 4 then
-				healcomm_ProcessSpellCast(spellName, rank, UnitName("target"))
+			if onSelf == 1 then
+				healcomm_ProcessSpellCast(spellName, rank, UnitName("player"))									
 			else
-				healcomm_ProcessSpellCast(spellName, rank, UnitName("player"))
+				if UnitIsVisible("target") and UnitIsConnected("target") and UnitReaction("target", "player") > 4 then
+					healcomm_ProcessSpellCast(spellName, rank, UnitName("target"))
+				else
+					healcomm_ProcessSpellCast(spellName, rank, UnitName("player"))
+				end
 			end
 		end
 	end
+	
 end
 CastSpellByName = healcomm_newCastSpellByName
 
@@ -1265,9 +1297,13 @@ WorldFrame:SetScript("OnMouseDown", function()
 			targetName = name
 		end
 	end
+	
+	-- DEFAULT_CHAT_FRAME:AddMessage("OnMouseDown() : "..tostring(targetName).."")		
+	
 	if ( healcomm_oldWorldFrameOnMouseDown ) then
 		healcomm_oldWorldFrameOnMouseDown()
 	end
+	
 	if ( healcomm_SpellSpell and targetName ) then
 		healcomm_ProcessSpellCast(healcomm_SpellSpell, healcomm_RankRank, targetName)
 	end
@@ -1308,12 +1344,17 @@ UseAction = healcomm_newUseAction
 
 healcomm_oldSpellTargetUnit = SpellTargetUnit
 function healcomm_newSpellTargetUnit(unit)
+	
+	-- DEFAULT_CHAT_FRAME:AddMessage("healcomm_newSpellTargetUnit() : unit = "..tostring(unit).."")
+	
 	-- Call the original function
 	local shallTargetUnit
 	if ( SpellIsTargeting() ) then
 		shallTargetUnit = true
 	end
+	
 	healcomm_oldSpellTargetUnit(unit)
+	
 	if ( shallTargetUnit and healcomm_SpellSpell and not SpellIsTargeting() ) then
 		healcomm_ProcessSpellCast(healcomm_SpellSpell, healcomm_RankRank, UnitName(unit))
 		healcomm_SpellSpell = nil
@@ -1333,7 +1374,8 @@ SpellStopTargeting = healcomm_newSpellStopTargeting
 healcomm_oldTargetUnit = TargetUnit
 function healcomm_newTargetUnit(unit)
 	-- Call the original function
-	healcomm_oldTargetUnit(unit)
+	
+	-- DEFAULT_CHAT_FRAME:AddMessage("healcomm_newTargetUnit() : unit = "..tostring(unit).."")
 	
 	-- Look to see if we're currently waiting for a target internally
 	-- If we are, then well glean the target info here.
@@ -1341,10 +1383,15 @@ function healcomm_newTargetUnit(unit)
 	if ( healcomm_SpellSpell and UnitExists(unit) ) then
 		healcomm_ProcessSpellCast(healcomm_SpellSpell, healcomm_RankRank, UnitName(unit))
 	end
+	
+	healcomm_oldTargetUnit(unit)	
 end
 TargetUnit = healcomm_newTargetUnit
 
 function healcomm_ProcessSpellCast(spellName, rank, targetName)
+	
+	-- DEFAULT_CHAT_FRAME:AddMessage("healcomm_ProcessSpellCast() : unit = "..tostring(targetName).." rank = "..tostring(rank).."")
+	
 	if ( spellName and rank and targetName ) then
 		local power, mod = GetTargetSpellPower(spellName)
 		healcomm_SpellCast = { spellName, rank, targetName, power, mod }
