@@ -1,0 +1,15 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+
+	<Script file="CM_agUnitFrames.lua"/>
+	<Script file="CM_Grid.lua"/>
+    <Script file="CM_XPerl.lua"/>
+    <Script file="CM_BlizzUnitFrames.lua"/>
+    <Script file="CM_BlizzRaidFrames.lua"/>
+    <Script file="CM_DUF.lua"/>
+	<Script file="CM_sRF.lua"/>
+	<Script file="CM_PerfectRaid.lua"/>
+	<Script file="CM_CTRaidAssist.lua"/>
+</Ui>

@@ -1,13 +1,9 @@
 ## Interface: 11200
-## Title: _LazySpell
-## Author: Ogrisch
-## Notes: Auto spell rank scale for Clique and CM
-## SavedVariables: 
-## Dependencies: BonusScanner
+## Title: Clique
+## Author: Cladhaire
+## Notes: Simply powerful click-casting interface
+## SavedVariables: CliqueDB
 ## OptionalDeps: Ace2, DewdropLib
-
-
-
 
 libs\FAIAP.lua
 libs\AceLibrary\AceLibrary.lua
@@ -18,17 +14,17 @@ libs\AceDB\AceDB-2.0.lua
 libs\AceDebug\AceDebug-2.0.lua
 libs\AceEvent\AceEvent-2.0.lua
 libs\AceConsole\AceConsole-2.0.lua
-libs\AceLocale-2.2\AceLocale-2.2.lua
+libs\AceLocale\AceLocale-2.0.lua
 libs\AceModuleCore\AceModuleCore-2.0.lua
 libs\Dewdrop\Dewdrop-2.0.lua
-libs\RosterLib-2.0\RosterLib-2.0.lua
-libs\Babble-Spell-2.2\Babble-Spell-2.2.lua
-libs\HealComm-1.0\HealComm-1.0.lua
 
-LazySpell.lua
+Clique.lua
+Localization.en.lua
+Localization.fr.lua
+Localization.de.lua
+Localization.zh.lua
+CliqueOptions.lua
+CliqueUtils.lua
+Clique.xml
 
-
-
-
-
-
+Plugins\Plugins.xml

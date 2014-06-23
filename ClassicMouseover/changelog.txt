@@ -1,0 +1,39 @@
+0.10
+
+--Grid enhanced Support
+
+0.9
+
+--CTRA Support Added
+
+0.8
+
+--PerfectRaid Support Added
+
+0.7
+
+--sRaidFrames Support Added
+
+0.6
+
+--Fix buggy for buggy target restoring
+
+0.5
+
+--Restore Target On Hostile Cast
+
+0.4
+
+--Added support for DUF
+--Cleaned up XPerl module
+
+0.3
+
+--Added Blizz frame support
+--Introduced new macro syntax
+
+0.2
+
+--Added Support for XPerl
+--Added Warning message when Auto Self Cast is enabled
+

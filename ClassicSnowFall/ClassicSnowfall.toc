@@ -1,0 +1,15 @@
+## Interface: 11200
+## Title: Classic Snowfall (Ace2) 
+## Author: Vallan
+## Notes: Keydown Cast Support for Vanilla
+## OptionalDeps: Ace2
+## Version: 0.4
+## SavedVariablesPerCharacter: CS_SELF_ENABLED
+
+libs\AceLibrary\AceLibrary.lua
+libs\AceOO\AceOO-2.0.lua
+libs\AceHook\AceHook-2.0.lua
+libs\AceAddon\AceAddon-2.0.lua
+libs\AceEvent\AceEvent-2.0.lua
+
+ClassicSnowfall.lua
