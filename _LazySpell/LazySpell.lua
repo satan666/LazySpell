@@ -16,6 +16,7 @@ function LazySpell:Debug(msg)
 end
 
 function LazySpell:DebugToggle()
+	LazySpell:Debug("Debugging disabled")
 	self.debugging = not self.debugging
 	LazySpell:Debug("Debugging enabled")
 end
@@ -153,6 +154,7 @@ end
 function LazySpell:CalculateRank(spell, unit)
 	local Bonus = 0
 	local max_rank = self:GetMaxSpellRank(spell)
+	
 	if BonusScanner then
 		Bonus = tonumber(BonusScanner:GetBonus("HEAL"))
 	end		

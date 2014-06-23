@@ -17,3 +17,7 @@ PACK CONTENT
 
 >>_LazySpell
 - auto spell rank scale for Clique and Classic Mouseover(check readme.txt in _LazySpell folder)
+
+>> Bonus Scanner
+
+- mandatory dependancy
