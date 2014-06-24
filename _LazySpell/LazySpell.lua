@@ -41,7 +41,6 @@ function LazySpell:OnEnable()
 		Clique.CastSpell_OLD = Clique.CastSpell
 		Clique.CastSpell = self.Clique_CastSpell
 	end
-	
 	if CM then
 		CM.CastSpell_OLD = CM.CastSpell
 		CM.CastSpell = self.CM_CastSpell
@@ -150,7 +149,6 @@ function LazySpell:GetMaxSpellRank(spellName)
     end
 end
 
-
 function LazySpell:CalculateRank(spell, unit)
 	local Bonus = 0
 	local max_rank = self:GetMaxSpellRank(spell)
@@ -189,7 +187,6 @@ end
 function LazySpell:Clique_CastSpell(spell, unit)
 	local s,r = LazySpell:ExtractSpell(spell)
 	unit = unit or Clique.unit
-	
 	if s and HealComm.Spells[s] and r == 1 then
 		local rank = LazySpell:CalculateRank(s, unit)
 		spell = s.."(Rank "..rank..")"
@@ -200,7 +197,6 @@ end
 
 function LazySpell:CM_CastSpell(spell, unit)
 	local s,r = LazySpell:ExtractSpell(spell)
-	
 	if s and HealComm.Spells[s] and r == 1 then
 		local rank = LazySpell:CalculateRank(s, unit)
 		spell = s.."(Rank "..rank..")"

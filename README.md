@@ -1,7 +1,19 @@
 LazySpell
 =========
 
-Auto spell rank scale for Clique and Classic Mouseover
+LazySpell is addon that provides auto rank scale for Clique and Classic Mouseover which means it's compatible with all Unit Frames that are supported by these two addons.
+
+This addon starts to work when you set up spell with rank 1, all other ranks will be passed unchanged
+
+Clique set up by addon GUI
+CM set up by executable macro like /cmcast Flash of Light(Rank 1)
+
+I decided to include HealComm made by Aviana and fixed by Relapsed to improve communications between addons like LUF and SRF Improved - full support(send/receive data about resurrections and incomming heals). 
+Thanks to _LazySpell and HealComm other Unit Frames will be able to send these informations to addons with full support which makes this solution very interesting especially in the raids where ressurection and inc heal monitor is very appreciated.
+
+
+To enable/disable debug mode type /ls debug
+
 
 PACK CONTENT
 
@@ -19,5 +31,6 @@ PACK CONTENT
 - auto spell rank scale for Clique and Classic Mouseover(check readme.txt in _LazySpell folder)
 
 >> Bonus Scanner
-
 - mandatory dependancy
+
+
