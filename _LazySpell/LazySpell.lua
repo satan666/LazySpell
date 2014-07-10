@@ -100,6 +100,8 @@ function LazySpell:GetUnitSpellPower(spell, unit)
 		local buffName = healcommTipTextLeft1:GetText()
 		if (buffTexture == "Interface\\Icons\\Spell_Holy_PrayerOfHealing02" or buffTexture == "Interface\\Icons\\Spell_Holy_GreaterBlessingofLight") then
 			local _,_, HLBonus, FoLBonus = string.find(healcommTipTextLeft2:GetText(),LazySpell.BOL[GetLocale()])
+			HLBonus = HLBonus or 0
+			FoLBonus = FoLBonus or 0
 			if (spell == L["Flash of Light"]) then
 				targetpower = FoLBonus + targetpower
 			elseif spell == L["Holy Light"] then

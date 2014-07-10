@@ -1,6 +1,7 @@
 ## Interface: 11200
 ## Title: _LazySpell
 ## Author: Ogrisch
+## Version: 0.2
 ## Notes: Auto spell rank scale for Clique and CM
 ## SavedVariables: 
 ## Dependencies: BonusScanner
