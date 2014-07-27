@@ -954,6 +954,8 @@ local function GetTargetSpellPower(spell)
 		local buffName = healcommTipTextLeft1:GetText()
 		if (buffTexture == "Interface\\Icons\\Spell_Holy_PrayerOfHealing02" or buffTexture == "Interface\\Icons\\Spell_Holy_GreaterBlessingofLight") then
 			local _,_, HLBonus, FoLBonus = string.find(healcommTipTextLeft2:GetText(),L["Blessing of Light"])
+			HLBonus = HLBonus or 0
+			FoLBonus = FoLBonus or 0
 			if (spell == L["Flash of Light"]) then
 				targetpower = FoLBonus + targetpower
 			elseif spell == L["Holy Light"] then
@@ -1048,6 +1050,9 @@ function HealComm.stopGrpHeal(caster)
 	if HealComm.SpecialEventScheduler:IsEventScheduled(caster) then
 		HealComm.SpecialEventScheduler:CancelScheduledEvent(caster)
 	end
+	if not HealComm.GrpHeals[caster] then
+		return
+	end
 	local targets = HealComm.GrpHeals[caster].targets
 	HealComm.GrpHeals[caster] = nil
 	for i=1,getn(targets) do
@@ -1057,6 +1062,9 @@ end
 
 function HealComm.delayGrpHeal(caster, delay)
 	HealComm.SpecialEventScheduler:CancelScheduledEvent(caster)
+	if not HealComm.GrpHeals[caster] then
+		return
+	end
 	HealComm.GrpHeals[caster].ctime = HealComm.GrpHeals[caster].ctime + (delay/1000)
 	HealComm.SpecialEventScheduler:ScheduleEvent(caster, HealComm.stopGrpHeal, (HealComm.GrpHeals[caster].ctime-GetTime()), caster)
 end
