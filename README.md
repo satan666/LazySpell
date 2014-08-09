@@ -1,5 +1,4 @@
 #LazySpell
-=========
 
 LazySpell is addon that provides auto healing spell rank scale for Clique and Classic Mouseover depending on unit health deficit. This means it's compatible with all Unit Frames that are supported by these two addons.
 
@@ -17,18 +16,17 @@ To enable/disable debug mode type /ls debug
 ##PACK CONTENT
 
 >> ClassicSnowfall
-- accelerates key bindings so that they are activated by key press rather than key release
+  - accelerates key bindings so that they are activated by key press rather than key release
 
 >> ClassicMouseover
-- mouseover cast compatible with sRaidFrames
-- use example /cmast Flash of Light or with rank selected /cmcast Flash of Light(Rank 4)
-
+  - mouseover cast compatible with sRaidFrames
+  - use example /cmast Flash of Light or with rank selected /cmcast Flash of Light(Rank 4)
 
 >> Clique
-- everybody knows what clique is
+  - everybody knows what clique is
 
 >>_LazySpell
-- auto spell rank scale for Clique and Classic Mouseover
+  - auto spell rank scale for Clique and Classic Mouseover
 
 >> Bonus Scanner
 - mandatory dependancy
