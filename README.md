@@ -28,6 +28,6 @@ To enable/disable debug mode type /ls debug
   - auto spell rank scale for Clique and Classic Mouseover
 
 - Bonus Scanner
-- mandatory dependancy
+  - mandatory dependancy
 
 
