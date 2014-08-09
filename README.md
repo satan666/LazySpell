@@ -1,4 +1,4 @@
-#LazySpell
+#LazySpell 1.12.1 WOW
 
 LazySpell is addon that provides auto healing spell rank scale for Clique and Classic Mouseover depending on unit health deficit. This means it's compatible with all Unit Frames that are supported by these two addons.
 
