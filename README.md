@@ -14,20 +14,19 @@ To enable/disable debug mode type /ls debug
 
 
 ##PACK CONTENT
-- ClassicSnowfall
-  - accelerates key bindings so that they are activated by key press rather than key release
 
+- Bonus Scanner(mandatory)
+  - mandatory dependancy
+  
 - ClassicMouseover
   - mouseover cast compatible with sRaidFrames
-  - use example /cmast Flash of Light or with rank selected /cmcast Flash of Light(Rank 4)
+  - macro use example /cmast Flash of Light or with rank selected /cmcast Flash of Light(Rank 1)
 
 - Clique
   - everybody knows what clique is
 
-- _LazySpell
-  - auto spell rank scale for Clique and Classic Mouseover
+- ClassicSnowfall(optional)
+  - great addon, accelerates key bindings so that they are activated by key press rather than key release
 
-- Bonus Scanner
-  - mandatory dependancy
 
 
