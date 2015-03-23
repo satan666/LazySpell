@@ -1,7 +1,9 @@
 local HealComm = AceLibrary("HealComm-1.0")
 local L = AceLibrary("Babble-Spell-2.2")
-LazySpell = AceLibrary("AceAddon-2.0"):new("AceConsole-2.0")
+LazySpell = AceLibrary("AceAddon-2.0"):new("AceEvent-2.0", "AceConsole-2.0")
 LazySpell.debugging = nil
+LazySpell.cast = {}
+
 
 LazySpell.BOL = {
 ["enUS"] = "Receives up to (%d+) extra healing from Holy Light spells%, and up to (%d+) extra healing from Flash of Light spells%.",
@@ -45,6 +47,16 @@ function LazySpell:OnEnable()
 		CM.CastSpell_OLD = CM.CastSpell
 		CM.CastSpell = self.CM_CastSpell
 	end
+	
+	self:RegisterEvent("SPELLCAST_START")
+end
+
+function LazySpell:SPELLCAST_START()
+	if self.cast.msg and self.cast.spell == arg1 then
+		LazySpell:Debug(self.cast.msg)
+	end	
+	self.cast.msg = nil
+	self.cast.spell = nil
 end
 
 function LazySpell:ExtractSpell(spell)
@@ -182,7 +194,10 @@ function LazySpell:CalculateRank(spell, unit)
 			heal = amount
 		end	
 	end	
-	self:Debug(spell.."(Rank "..result..") - "..GetUnitName(unit).." - Heal: "..heal.." - Needed: "..healneed)
+
+	self.cast.spell = spell
+	self.cast.msg = spell.."(Rank "..result..") - "..GetUnitName(unit).." - Heal: "..heal.." - Deficit: "..healneed, spell
+	
 	return result
 end
 
